@@ -1,7 +1,8 @@
-import {Entity,Column, PrimaryGeneratedColumn} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+import { Account } from '../account/account.entity';
 
 @Entity()
-export class Person{
+export class Person {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -27,9 +28,6 @@ export class Person{
     personalEmail: string;
 
     @Column()
-    institutionalEmail: string;
-    
-    @Column()
     address: string;
 
     @Column()
@@ -38,6 +36,9 @@ export class Person{
     @Column()
     maritalStatus: string;
 
-    @Column()
+    @Column({ default: true })
     status: boolean;
+
+    @OneToOne(type =>Account, account => account.person)
+    account: Account;
 }
