@@ -6,10 +6,13 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PersonModule } from './person/person.module';
 import { AccountModule } from './account/account.module';
+import { AdministrativeModule } from './administrative/administrative.module';
 
 //Entidades
-import { Person } from './person/person.entity';
-import { Account } from './account/account.entity';
+import { Person } from './person/schema/person.entity';
+import { Account } from './account/schema/account.entity';
+import { Administrative } from './administrative/schema/administrative.entity';
+
 
 
 @Module({
@@ -21,11 +24,12 @@ import { Account } from './account/account.entity';
       username: 'postgres',
       password: 'root',
       database: 'entorno',
-      entities: [Person,Account],
+      entities: [Person, Account,Administrative],
       synchronize: true
     }),
     PersonModule,
-    AccountModule
+    AccountModule,
+    AdministrativeModule
   ],
   controllers: [AppController],
   providers: [AppService],

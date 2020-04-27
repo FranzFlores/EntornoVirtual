@@ -1,8 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
-import { Account } from '../account/account.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, TableInheritance } from 'typeorm';
+import { Account } from '../../account/schema/account.entity';
 
 @Entity()
+@TableInheritance({column : {type: "varchar", name: "type" }})
 export class Person {
+
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -39,6 +41,8 @@ export class Person {
     @Column({ default: true })
     status: boolean;
 
-    @OneToOne(type =>Account, account => account.person)
+    @OneToOne(()=>Account)
+    @JoinColumn()
     account: Account;
+
 }
