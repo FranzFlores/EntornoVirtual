@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
 import { Faculty } from '../../faculty/schema/faculty.entity';
+import { Curriculum } from "src/curriculum/schema/curriculum.entity";
 
 @Entity()
 export class Career {
@@ -27,4 +28,8 @@ export class Career {
 
     @ManyToOne(type=>Faculty,faculty=> faculty.careers)
     faculty: Faculty;
+
+    @OneToMany(type=>Curriculum,curriculum=> curriculum.carrer)
+    curriculums:Curriculum[];
+
 }
