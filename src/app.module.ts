@@ -5,7 +5,9 @@ import { AppService } from './app.service';
 //Conexion para la base de datos 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PersonModule } from './person/person.module';
+import { AccreditationModule } from './accreditation/accreditation.module';
 import { Person } from './person/person.entity';
+import { PartialNoteModule } from './partial-note/partial-note.module';
 
 @Module({
   imports: [
@@ -19,7 +21,9 @@ import { Person } from './person/person.entity';
       entities: [Person],
       synchronize: true
     }),
-    PersonModule
+    PersonModule,
+    AccreditationModule,
+    PartialNoteModule
   ],
   controllers: [AppController],
   providers: [AppService],
