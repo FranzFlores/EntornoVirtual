@@ -1,20 +1,25 @@
-import { Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Career } from '../../career/schema/career.entity';
 
 @Entity()
-export class Faculty{
+export class Faculty {
 
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    name:string;
+    name: string;
 
     @Column()
-    description:string;
+    description: string;
 
     @Column()
-    location:string;
+    location: string;
 
-    @Column({default:true})
-    status:boolean;
+    @Column({ default: true })
+    status: boolean;
+
+    @OneToMany(type => Career, carrer => carrer.faculty)
+    careers: Career[];
+
 }
