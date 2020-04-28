@@ -1,8 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, TableInheritance } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+
 import { Account } from '../../account/schema/account.entity';
+import { Student } from 'src/student/schema/student.entity';
+import { Administrative } from 'src/administrative/schema/administrative.entity';
 
 @Entity()
-@TableInheritance({column : {type: "varchar", name: "type" }})
 export class Person {
 
     @PrimaryGeneratedColumn()
@@ -41,8 +43,14 @@ export class Person {
     @Column({ default: true })
     status: boolean;
 
-    @OneToOne(()=>Account)
-    @JoinColumn()
+
+    @OneToOne(() => Account,(account:Account)=>account.person)
     account: Account;
+
+    @OneToOne(()=>Administrative,(administrative:Administrative)=>administrative.person)
+    administrative:Administrative;
+
+    @OneToOne(() => Student,(student:Student)=>student.person)
+    student: Student;
 
 }

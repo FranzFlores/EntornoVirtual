@@ -12,6 +12,7 @@ import { AdministrativeModule } from './administrative/administrative.module';
 import { FacultyModule } from './faculty/faculty.module';
 import { CareerModule } from './career/career.module';
 import { CurriculumModule } from './curriculum/curriculum.module';
+import { StudentModule } from './student/student.module';
 
 //Entidades
 import { Person } from './person/schema/person.entity';
@@ -20,6 +21,7 @@ import { Administrative } from './administrative/schema/administrative.entity';
 import { Faculty } from './faculty/schema/faculty.entity';
 import { Career } from './career/schema/career.entity';
 import { Curriculum } from './curriculum/schema/curriculum.entity';
+import { Student} from './student/schema/student.entity';
 
 @Module({
   imports: [
@@ -30,7 +32,7 @@ import { Curriculum } from './curriculum/schema/curriculum.entity';
       username: 'postgres',
       password: 'root',
       database: 'entorno',
-      entities: [Person, Account, Administrative, Faculty, Career, Curriculum],
+      entities: [Person, Account, Administrative,Student, Faculty, Career, Curriculum],
       synchronize: true
     }),
     PersonModule,
@@ -40,7 +42,8 @@ import { Curriculum } from './curriculum/schema/curriculum.entity';
     AdministrativeModule,
     FacultyModule,
     CareerModule,
-    CurriculumModule
+    CurriculumModule,
+    StudentModule
   ],
   controllers: [AppController],
   providers: [AppService],
