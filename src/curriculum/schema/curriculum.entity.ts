@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
 import { Career } from "src/career/schema/career.entity";
 import { Subject } from "../../subject/subject.entity";
 @Entity()

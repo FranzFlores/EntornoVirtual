@@ -24,6 +24,8 @@ import { Curriculum } from './curriculum/schema/curriculum.entity';
 import { Student } from './student/schema/student.entity';
 import { Role } from './role/schema/role.entity';
 import { Accreditation } from './accreditation/accreditation.entity';
+import { DescriptionPartialModule } from './description-partial/description-partial.module';
+import { ClassModule } from './class/class.module';
 
 @Module({
   imports: [
@@ -46,7 +48,9 @@ import { Accreditation } from './accreditation/accreditation.entity';
     CareerModule,
     CurriculumModule,
     SubjectModule,
-    RoleModule
+    RoleModule,
+    DescriptionPartialModule,
+    ClassModule
   ],
   controllers: [AppController],
   providers: [AppService],

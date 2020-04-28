@@ -16,7 +16,7 @@ export class Accreditation{
     description: String;
 
     @Column()
-    object: String;
+    objective: String;
 
     @Column()
     dueDate: Date;
