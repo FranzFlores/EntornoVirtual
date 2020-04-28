@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-//Conexion para la base de datos 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PersonModule } from './person/person.module';
 import { AccreditationModule } from './accreditation/accreditation.module';
@@ -12,7 +11,9 @@ import { AdministrativeModule } from './administrative/administrative.module';
 import { FacultyModule } from './faculty/faculty.module';
 import { CareerModule } from './career/career.module';
 import { CurriculumModule } from './curriculum/curriculum.module';
-
+import { StudentModule } from './student/student.module';
+import { RoleModule } from './role/role.module';
+import { SubjectModule } from './subject/subject.module';
 //Entidades
 import { Person } from './person/schema/person.entity';
 import { Account } from './account/schema/account.entity';
@@ -20,7 +21,9 @@ import { Administrative } from './administrative/schema/administrative.entity';
 import { Faculty } from './faculty/schema/faculty.entity';
 import { Career } from './career/schema/career.entity';
 import { Curriculum } from './curriculum/schema/curriculum.entity';
-import { SubjectModule } from './subject/subject.module';
+import { Student } from './student/schema/student.entity';
+import { Role } from './role/schema/role.entity';
+import { Accreditation } from './accreditation/accreditation.entity';
 
 @Module({
   imports: [
@@ -31,7 +34,7 @@ import { SubjectModule } from './subject/subject.module';
       username: 'postgres',
       password: 'root',
       database: 'entorno',
-      entities: [Person, Account, Administrative, Faculty, Career, Curriculum],
+      entities: [Person, Account, Administrative, Role, Student, Faculty, Career, Curriculum,Accreditation],
       synchronize: true
     }),
     PersonModule,
@@ -42,7 +45,8 @@ import { SubjectModule } from './subject/subject.module';
     FacultyModule,
     CareerModule,
     CurriculumModule,
-    SubjectModule
+    SubjectModule,
+    RoleModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,9 +1,13 @@
-import { Column, ChildEntity } from 'typeorm';
-import { Person } from '../../person/schema/person.entity';
+import { Column,PrimaryGeneratedColumn, Entity, OneToOne, JoinColumn, OneToMany } from 'typeorm';
+import { Person } from 'src/person/schema/person.entity';
+import { Role } from 'src/role/schema/role.entity';
 
+@Entity()
+export class Administrative{
 
-@ChildEntity()
-export class Administrative extends Person{
+    @PrimaryGeneratedColumn()
+    id:number;
+
     @Column()
     degree: string;
 
@@ -15,4 +19,12 @@ export class Administrative extends Person{
 
     @Column()
     degreeFourthLevelFile: string;
+
+    @OneToOne(()=>Person,(person:Person)=>person.administrative)
+    @JoinColumn()
+    person:Person;
+
+    @OneToMany(type=> Role,role =>role.administrative)
+    roles:Role[];
+
 }
