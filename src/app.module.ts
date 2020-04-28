@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-//Conexion para la base de datos 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PersonModule } from './person/person.module';
 import { AccreditationModule } from './accreditation/accreditation.module';
@@ -22,8 +21,9 @@ import { Administrative } from './administrative/schema/administrative.entity';
 import { Faculty } from './faculty/schema/faculty.entity';
 import { Career } from './career/schema/career.entity';
 import { Curriculum } from './curriculum/schema/curriculum.entity';
-import { Student} from './student/schema/student.entity';
+import { Student } from './student/schema/student.entity';
 import { Role } from './role/schema/role.entity';
+import { Accreditation } from './accreditation/accreditation.entity';
 
 @Module({
   imports: [
@@ -34,7 +34,7 @@ import { Role } from './role/schema/role.entity';
       username: 'postgres',
       password: 'root',
       database: 'entorno',
-      entities: [Person, Account, Administrative,Role,Student, Faculty, Career, Curriculum],
+      entities: [Person, Account, Administrative, Role, Student, Faculty, Career, Curriculum,Accreditation],
       synchronize: true
     }),
     PersonModule,
