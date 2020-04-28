@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
 import { Career } from "src/career/schema/career.entity";
-
+import { Subject } from "../../subject/subject.entity";
 @Entity()
 export class Curriculum{
 
@@ -21,4 +21,8 @@ export class Curriculum{
 
     @ManyToOne(type=>Career,career=>career.curriculums)
     carrer:Career;
+
+    @OneToMany(type=>Subject, subject=> subject.curriculum)
+    subjects:Subject[];
+
 }

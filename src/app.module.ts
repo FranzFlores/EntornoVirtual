@@ -20,6 +20,7 @@ import { Administrative } from './administrative/schema/administrative.entity';
 import { Faculty } from './faculty/schema/faculty.entity';
 import { Career } from './career/schema/career.entity';
 import { Curriculum } from './curriculum/schema/curriculum.entity';
+import { SubjectModule } from './subject/subject.module';
 
 @Module({
   imports: [
@@ -40,7 +41,8 @@ import { Curriculum } from './curriculum/schema/curriculum.entity';
     AdministrativeModule,
     FacultyModule,
     CareerModule,
-    CurriculumModule
+    CurriculumModule,
+    SubjectModule
   ],
   controllers: [AppController],
   providers: [AppService],
