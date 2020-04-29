@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
 import { Curriculum } from "../curriculum/schema/curriculum.entity";
-import { descriptionPartial } from "src/description-partial/description-partial.entity";
+import { DescriptionPartial } from "src/description-partial/description-partial.entity";
 
 @Entity()
 export class Subject{
@@ -25,7 +25,7 @@ export class Subject{
     @ManyToOne(type=>Curriculum, curriculum=>curriculum.subjects)
     curriculum:Curriculum;
 
-    @OneToMany(type => descriptionPartial, descriptionpartial => descriptionpartial.subject)
-    descriptionpartials: descriptionPartial[];
+    @OneToMany(type => DescriptionPartial, descriptionpartial => descriptionpartial.subject)
+    descriptionpartials: DescriptionPartial[];
 
 }

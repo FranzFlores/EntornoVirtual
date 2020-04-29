@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
-import { descriptionPartial } from "../description-partial/description-partial.entity";
+import { DescriptionPartial } from "../description-partial/description-partial.entity";
 
 @Entity()
 export class Class{
@@ -16,6 +16,6 @@ export class Class{
     @Column()
     date: String;
 
-    @ManyToOne(type => descriptionPartial, descriptionpartial => descriptionpartial.classes)
-    descriptionpartial: descriptionPartial;
+    @ManyToOne(type => DescriptionPartial, descriptionpartial => descriptionpartial.classes)
+    descriptionpartial: DescriptionPartial;
 }

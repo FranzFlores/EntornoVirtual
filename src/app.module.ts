@@ -1,31 +1,43 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-import { TypeOrmModule } from '@nestjs/typeorm';
+//Modulos
 import { PersonModule } from './person/person.module';
-import { AccreditationModule } from './accreditation/accreditation.module';
-import { PartialNoteModule } from './partial-note/partial-note.module';
 import { AccountModule } from './account/account.module';
 import { AdministrativeModule } from './administrative/administrative.module';
+import { RoleModule } from './role/role.module';
+import { StudentModule } from './student/student.module';
+
 import { FacultyModule } from './faculty/faculty.module';
 import { CareerModule } from './career/career.module';
 import { CurriculumModule } from './curriculum/curriculum.module';
-import { StudentModule } from './student/student.module';
-import { RoleModule } from './role/role.module';
 import { SubjectModule } from './subject/subject.module';
+import { DescriptionPartialModule } from './description-partial/description-partial.module';
+import { ClassModule } from './class/class.module';
+
+import { AccreditationModule } from './accreditation/accreditation.module';
+import { PartialNoteModule } from './partial-note/partial-note.module';
+
 //Entidades
 import { Person } from './person/schema/person.entity';
 import { Account } from './account/schema/account.entity';
 import { Administrative } from './administrative/schema/administrative.entity';
+import { Role } from './role/schema/role.entity';
+import { Student } from './student/schema/student.entity';
+
 import { Faculty } from './faculty/schema/faculty.entity';
 import { Career } from './career/schema/career.entity';
 import { Curriculum } from './curriculum/schema/curriculum.entity';
-import { Student } from './student/schema/student.entity';
-import { Role } from './role/schema/role.entity';
+import { Subject } from './subject/subject.entity';
+import { DescriptionPartial } from './description-partial/description-partial.entity';
+import { Class } from './class/class.entity';
+
 import { Accreditation } from './accreditation/accreditation.entity';
-import { DescriptionPartialModule } from './description-partial/description-partial.module';
-import { ClassModule } from './class/class.module';
+
+
 
 @Module({
   imports: [
@@ -36,21 +48,26 @@ import { ClassModule } from './class/class.module';
       username: 'postgres',
       password: 'root',
       database: 'entorno',
-      entities: [Person, Account, Administrative, Role, Student, Faculty, Career, Curriculum,Accreditation],
+      entities: [Person, Account, Administrative, Role, Student,
+        Faculty, Career, Curriculum, Subject, DescriptionPartial,Class],
       synchronize: true
     }),
     PersonModule,
-    AccreditationModule,
-    PartialNoteModule,
     AccountModule,
     AdministrativeModule,
+    RoleModule,
+    StudentModule,
     FacultyModule,
     CareerModule,
     CurriculumModule,
     SubjectModule,
-    RoleModule,
     DescriptionPartialModule,
     ClassModule
+    // AccreditationModule,
+    // PartialNoteModule,
+    // SubjectModule,
+    // DescriptionPartialModule,
+    // ClassModule
   ],
   controllers: [AppController],
   providers: [AppService],

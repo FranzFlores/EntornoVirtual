@@ -3,7 +3,7 @@ import { Subject } from "../subject/subject.entity";
 import { Class } from "../class/class.entity";
 
 @Entity()
-export class descriptionPartial{
+export class DescriptionPartial {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -16,7 +16,7 @@ export class descriptionPartial{
     @Column()
     dueDate: Date;
 
-    @ManyToOne(type=>Subject, subject => subject.descriptionpartials)
+    @ManyToOne(type => Subject, subject => subject.descriptionpartials)
     subject: Subject;
 
     @OneToMany(type => Class, entityclass => entityclass.descriptionpartial)
