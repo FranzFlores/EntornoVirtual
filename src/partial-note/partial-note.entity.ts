@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from "typeorm";
 import { Accreditation } from "../accreditation/accreditation.entity";
+import { Enroll } from "src/enroll/enroll.entity";
 @Entity()
 export class partialNote {
     @PrimaryGeneratedColumn()
@@ -16,4 +17,7 @@ export class partialNote {
 
     @OneToMany(type => Accreditation, accreditation => accreditation.partialnote)
     accreditations : Accreditation[];
+
+    @ManyToOne(type => Enroll, enroll => enroll.partialnotes)
+    enroll: Enroll;
 }

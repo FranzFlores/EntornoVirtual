@@ -20,6 +20,8 @@ import { ClassModule } from './class/class.module';
 
 import { AccreditationModule } from './accreditation/accreditation.module';
 import { PartialNoteModule } from './partial-note/partial-note.module';
+import { EnrollModule } from './enroll/enroll.module';
+import { PeriodModule } from './period/period.module';
 
 //Entidades
 import { Person } from './person/schema/person.entity';
@@ -62,7 +64,9 @@ import { Accreditation } from './accreditation/accreditation.entity';
     CurriculumModule,
     SubjectModule,
     DescriptionPartialModule,
-    ClassModule
+    ClassModule,
+    EnrollModule,
+    PeriodModule
     // AccreditationModule,
     // PartialNoteModule,
     // SubjectModule,

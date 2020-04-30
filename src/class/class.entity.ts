@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, JoinTable, ManyToOne, ManyToMany } from "typeorm";
 import { DescriptionPartial } from "../description-partial/description-partial.entity";
+import { Enroll } from "src/enroll/enroll.entity";
 
 @Entity()
 export class Class{
@@ -18,4 +19,8 @@ export class Class{
 
     @ManyToOne(type => DescriptionPartial, descriptionpartial => descriptionpartial.classes)
     descriptionpartial: DescriptionPartial;
+
+    @ManyToMany(() => Enroll)
+    @JoinTable()
+    classes: Class[];
 }
