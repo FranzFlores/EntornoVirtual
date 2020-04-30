@@ -1,4 +1,5 @@
 export class CreatePersonDTO{
+    //Campos para Persona
     readonly firstName1: string;
     readonly firstName2: string;
     readonly lastName1: string;
@@ -9,4 +10,22 @@ export class CreatePersonDTO{
     readonly address: string;
     readonly cellphone: string;
     readonly maritalStatus: string;
+
+    readonly type:string;
+
+    //Campos para cuenta
+    readonly institutionalEmail: string;
+    readonly password: string;
+    readonly person: number;
+
+    //Campos para estudiante
+    readonly degreeFileS: string;
+    readonly degreeCertificateFile: string;
+    readonly cycle: number;
+
+    //Campos para Administrativo
+    readonly degree: string;
+    readonly degreeFileA: string;
+    readonly degreeFourthLevel: string;
+    readonly degreeFourthLevelFile: string;
 }

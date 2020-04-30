@@ -13,7 +13,7 @@ export class Student{
     @Column()
     degreeCertificateFile: string;
 
-    @Column()
+    @Column({default:1})
     cycle: number;
 
     @OneToOne(()=>Person,(person:Person)=>person.student)

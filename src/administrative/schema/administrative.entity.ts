@@ -1,4 +1,4 @@
-import { Column,PrimaryGeneratedColumn, Entity, OneToOne, JoinColumn, OneToMany } from 'typeorm';
+import { Column,PrimaryGeneratedColumn, Entity, OneToOne, JoinColumn, ManyToMany,JoinTable } from 'typeorm';
 import { Person } from 'src/person/schema/person.entity';
 import { Role } from 'src/role/schema/role.entity';
 
@@ -24,7 +24,6 @@ export class Administrative{
     @JoinColumn()
     person:Person;
 
-    @OneToMany(type=> Role,role =>role.administrative)
-    roles:Role[];
+
 
 }

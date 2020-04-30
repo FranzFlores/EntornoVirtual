@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from "typeorm";
 import { Administrative } from "src/administrative/schema/administrative.entity";
 
 @Entity()
@@ -10,6 +10,8 @@ export class Role{
     @Column()
     name:string;
 
-    @ManyToOne(type=>Administrative,administrative=> administrative.roles)
-    administrative:Administrative;
+    @ManyToMany(type=>Role)
+    @JoinTable()
+    administrative:Administrative[];
+
 }
