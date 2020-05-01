@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
-import { partialNote } from "src/partial-note/partial-note.entity";
+import { PartialNote } from "src/partial-note/partial-note.entity";
 
 @Entity()
 export class Accreditation{
@@ -24,7 +24,7 @@ export class Accreditation{
     @Column()
     qualification: number;
     
-    @ManyToOne(type=>partialNote, partialnote => partialnote.accreditations)
-    partialnote: partialNote;
+    @ManyToOne(type=>PartialNote, partialnote => partialnote.accreditations)
+    partialnote: PartialNote;
 
 }

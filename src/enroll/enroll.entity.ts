@@ -20,8 +20,8 @@ export class Enroll{
     @Column()
     eliminated: boolean;
 
-    @OneToMany(type => partialNote, partialnote => partialnote.enroll)
-    partialnotes: partialNote[];
+    @OneToMany(type => PartialNote, partialnote => partialnote.enroll)
+    partialnotes: PartialNote[];
 
     @ManyToOne(type => Subject, subject => subject.enrolls)
     subject: Subject;

@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from "ty
 import { Accreditation } from "../accreditation/accreditation.entity";
 import { Enroll } from "src/enroll/enroll.entity";
 @Entity()
-export class partialNote {
+export class PartialNote {
     @PrimaryGeneratedColumn()
     id: number;
 

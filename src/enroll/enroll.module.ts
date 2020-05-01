@@ -3,10 +3,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { EnrollController } from './enroll.controller';
 import { EnrollService } from './enroll.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { Enroll } from './enroll.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Enroll])],
+  imports:[TypeOrmModule.forFeature([Enroll])],
   controllers: [EnrollController],
   providers: [EnrollService]
 })
