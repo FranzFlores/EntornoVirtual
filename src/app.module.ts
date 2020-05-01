@@ -5,39 +5,44 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 //Modulos
-import { PersonModule } from './person/person.module';
 import { AccountModule } from './account/account.module';
+import { AccreditationModule } from './accreditation/accreditation.module';
 import { AdministrativeModule } from './administrative/administrative.module';
-import { RoleModule } from './role/role.module';
-import { StudentModule } from './student/student.module';
-
-import { FacultyModule } from './faculty/faculty.module';
 import { CareerModule } from './career/career.module';
-import { CurriculumModule } from './curriculum/curriculum.module';
-import { SubjectModule } from './subject/subject.module';
-import { DescriptionPartialModule } from './description-partial/description-partial.module';
 import { ClassModule } from './class/class.module';
 
-import { AccreditationModule } from './accreditation/accreditation.module';
-import { PartialNoteModule } from './partial-note/partial-note.module';
+import { CurriculumModule } from './curriculum/curriculum.module';
+import { DescriptionPartialModule } from './description-partial/description-partial.module';
 import { EnrollModule } from './enroll/enroll.module';
+import { FacultyModule } from './faculty/faculty.module';
+import { PartialNoteModule } from './partial-note/partial-note.module';
+
 import { PeriodModule } from './period/period.module';
+import { PersonModule } from './person/person.module';
+import { RoleModule } from './role/role.module';
+import { StudentModule } from './student/student.module';
+import { SubjectModule } from './subject/subject.module';
+
 
 //Entidades
-import { Person } from './person/schema/person.entity';
 import { Account } from './account/schema/account.entity';
+import { Accreditation } from './accreditation/accreditation.entity';
 import { Administrative } from './administrative/schema/administrative.entity';
-import { Role } from './role/schema/role.entity';
-import { Student } from './student/schema/student.entity';
-
-import { Faculty } from './faculty/schema/faculty.entity';
 import { Career } from './career/schema/career.entity';
-import { Curriculum } from './curriculum/schema/curriculum.entity';
-import { Subject } from './subject/subject.entity';
-import { DescriptionPartial } from './description-partial/description-partial.entity';
 import { Class } from './class/class.entity';
 
-import { Accreditation } from './accreditation/accreditation.entity';
+import { Curriculum } from './curriculum/schema/curriculum.entity';
+import { DescriptionPartial } from './description-partial/description-partial.entity';
+import { Enroll } from "./enroll/enroll.entity";
+import { Faculty } from './faculty/schema/faculty.entity';
+import { partialNote } from "./partial-note/partial-note.entity";
+
+import { Period } from "./period/period.entity";
+import { Person } from './person/schema/person.entity';
+import { Role } from './role/schema/role.entity';
+import { Student } from './student/schema/student.entity';
+import { Subject } from './subject/subject.entity';
+
 
 
 
@@ -50,28 +55,25 @@ import { Accreditation } from './accreditation/accreditation.entity';
       username: 'postgres',
       password: 'root',
       database: 'entorno',
-      entities: [Person, Account, Administrative, Role, Student,
-        Faculty, Career, Curriculum, Subject, DescriptionPartial,Class],
+      entities: [Account, Accreditation, Administrative, Career, Class, Curriculum, DescriptionPartial, Enroll, Faculty, partialNote,
+        Period, Person, Role, Student, Subject],
       synchronize: true
     }),
-    PersonModule,
     AccountModule,
+    AccreditationModule,
     AdministrativeModule,
+    CareerModule,
+    ClassModule,
+    CurriculumModule,
+    DescriptionPartialModule,
+    EnrollModule,
+    FacultyModule,
+    PartialNoteModule,
+    PeriodModule,
+    PersonModule,
     RoleModule,
     StudentModule,
-    FacultyModule,
-    CareerModule,
-    CurriculumModule,
-    SubjectModule,
-    DescriptionPartialModule,
-    ClassModule,
-    EnrollModule,
-    PeriodModule
-    // AccreditationModule,
-    // PartialNoteModule,
-    // SubjectModule,
-    // DescriptionPartialModule,
-    // ClassModule
+    SubjectModule
   ],
   controllers: [AppController],
   providers: [AppService],

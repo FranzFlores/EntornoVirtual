@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, JoinTable, OneToOne, OneToMany, ManyToMany, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, JoinTable, OneToOne, OneToMany, ManyToMany, ManyToOne } from "typeorm";
 import { type } from "os";
 import { partialNote } from "src/partial-note/partial-note.entity";
 import { Subject } from "../subject/subject.entity";
@@ -30,9 +30,10 @@ export class Enroll{
     student: Student;
 
     @OneToOne(type => Period, period => period.enroll)
+    @JoinColumn()
     period: Period;
     
     @ManyToMany(() => Class)
     @JoinTable()
-    classes: Class[];
+    assistances: Class[];
 }
