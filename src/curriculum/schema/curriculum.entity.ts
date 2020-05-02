@@ -19,6 +19,9 @@ export class Curriculum{
     @Column()
     numberHours:number;
 
+    @Column({default:true})
+    status:boolean;
+
     @ManyToOne(type=>Career,career=>career.curriculums)
     carrer:Career;
 
