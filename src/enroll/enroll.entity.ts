@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, JoinTable, OneToOne, OneToMany, ManyToMany, ManyToOne } from "typeorm";
-import { type } from "os";
-import { partialNote } from "src/partial-note/partial-note.entity";
+
+import { PartialNote } from "src/partial-note/partial-note.entity";
 import { Subject } from "../subject/subject.entity";
 import { Student } from "src/student/schema/student.entity";
 import { Period } from "src/period/period.entity";
