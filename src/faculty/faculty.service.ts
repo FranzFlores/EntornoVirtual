@@ -31,7 +31,7 @@ export class FacultyService {
     }
 
     async getFaculty(id:number){
-        let faculty = await this.facultyRepository.findOne({where:{id}});
+        let faculty = await this.facultyRepository.findOne({where:{id},relations:["careers"]});
         return faculty;
     }
 
