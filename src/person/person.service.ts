@@ -64,9 +64,17 @@ export class PersonService {
             administrative.degreeFourthLevelFile = data.degreeFourthLevelFile;
             administrative.person = person;
             await this.administrativeRepository.save(administrative);
-            console.log(administrative);
             return administrative;
         }
     }
 
+    async peopleList(data:any){
+        if (data.type == "Estudiante") {
+            let students = await this.personRepository.find({where:{status:data.status},relations:["account","student"]});
+            return students;
+        }else if(data.type == "Administrativo"){
+            let administratives = await this.personRepository.find({where:{status:data.status},relations:["account","administrative"]})
+            return administratives;
+        }
+    }
 }

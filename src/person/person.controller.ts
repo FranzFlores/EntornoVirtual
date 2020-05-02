@@ -12,4 +12,9 @@ export class PersonController {
         return this.personService.createPerson(person);
     }
 
+    @Post('list')
+    peopleList(@Body() data:any){
+        return this.personService.peopleList(data);
+    }
+
 }
