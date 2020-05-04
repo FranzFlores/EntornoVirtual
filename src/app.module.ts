@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -41,6 +42,7 @@ import { Accreditation } from './accreditation/accreditation.entity';
 
 @Module({
   imports: [
+    //Conexion de Base de Datos
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -53,6 +55,7 @@ import { Accreditation } from './accreditation/accreditation.entity';
         Enroll,Period,PartialNote,Accreditation],
       synchronize: true
     }),
+    //Modulos de la aplicacion
     PersonModule,
     AccountModule,
     AdministrativeModule,
@@ -67,7 +70,7 @@ import { Accreditation } from './accreditation/accreditation.entity';
     EnrollModule,
     PeriodModule,
     PartialNoteModule,
-    AccreditationModule  
+    AccreditationModule
   ],
   controllers: [AppController],
   providers: [AppService],
