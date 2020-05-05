@@ -1,4 +1,4 @@
-import * as bcrypt from 'bcrypt';
+import  * as bcrypt from 'bcrypt';
 
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -28,7 +28,8 @@ export class PersonService {
         private administrativeRepository: Repository<Administrative>
     ) { }
 
-    async createPerson(data: CreatePersonDTO) {
+   
+    async createPerson(data: CreatePersonDTO) {       
         //Comprobar si la persona ya esta registrada por su cedula
         const { dni } = data;
         let person = await this.personRepository.findOne({ where: { dni } });
@@ -77,4 +78,10 @@ export class PersonService {
             return administratives;
         }
     }
+
+    async getAccont(email:any){
+        const account = await this.accountRepository.findOne({where:{institutionalEmail:email},relations:["person"]});
+        return account;
+    }
+
 }

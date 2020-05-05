@@ -39,6 +39,7 @@ import { Enroll } from './enroll/enroll.entity';
 import { Period } from "./period/period.entity";
 import { PartialNote } from "./partial-note/partial-note.entity";
 import { Accreditation } from './accreditation/accreditation.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -70,9 +71,11 @@ import { Accreditation } from './accreditation/accreditation.entity';
     EnrollModule,
     PeriodModule,
     PartialNoteModule,
-    AccreditationModule
+    AccreditationModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
+  
 })
 export class AppModule { }

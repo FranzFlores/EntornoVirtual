@@ -43,7 +43,6 @@ export class Person {
     @Column({ default: true })
     status: boolean;
 
-
     @OneToOne(() => Account,(account:Account)=>account.person)
     account: Account;
 

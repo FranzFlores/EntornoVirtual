@@ -9,7 +9,7 @@ export class AccountService {
 
     constructor(
         @InjectRepository(Account)
-        private accountRepository:Repository<Account>
+        public accountRepository:Repository<Account>
     ){}
 
 }
