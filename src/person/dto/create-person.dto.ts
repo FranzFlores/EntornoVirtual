@@ -10,6 +10,7 @@ export class CreatePersonDTO{
     readonly address: string;
     readonly cellphone: string;
     readonly maritalStatus: string;
+    readonly image:string;
 
     readonly type:string;
 

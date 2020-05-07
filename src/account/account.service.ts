@@ -12,4 +12,10 @@ export class AccountService {
         public accountRepository:Repository<Account>
     ){}
 
+    //Obtener informacion de la cuenta
+    getAccount(institutionalEmail:string){
+        const account = this.accountRepository.findOne({where:{institutionalEmail},relations:["person"]});
+        return account;
+    }
+
 }

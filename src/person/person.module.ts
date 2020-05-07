@@ -8,8 +8,7 @@ import { PersonController } from './person.controller';
 import { Account } from 'src/account/schema/account.entity';
 import { Student } from 'src/student/schema/student.entity';
 import { Administrative } from 'src/administrative/schema/administrative.entity';
-import { AuthService } from 'src/auth/auth.service';
-import { JwtModule, JwtService } from '@nestjs/jwt';
+
 
 
 @Module({

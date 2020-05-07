@@ -1,6 +1,7 @@
-import { Controller, Post, Body, Get, Put, Param, Patch } from '@nestjs/common';
+import { Controller, Post, Body, Get, Put, Param, Patch, UseGuards } from '@nestjs/common';
 import { FacultyService } from './faculty.service';
 import { CreateFacultyDTO } from './dto/create-faculty';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 
 @Controller('faculty')
@@ -18,6 +19,7 @@ export class FacultyController {
         return this.facultyService.facultyList(data);
     }
 
+    @UseGuards(JwtAuthGuard)
     @Get('/:id')
     getFaculty(@Param('id') id){
         return this.facultyService.getFaculty(id);

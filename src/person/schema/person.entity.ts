@@ -40,6 +40,9 @@ export class Person {
     @Column()
     maritalStatus: string;
 
+    @Column()
+    image:string;
+
     @Column({ default: true })
     status: boolean;
 
