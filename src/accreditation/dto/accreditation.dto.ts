@@ -1,3 +1,5 @@
+import { PartialNote } from "src/partial-note/partial-note.entity";
+
 export class AccreditationDTO{
     type: String;
     topic: String;
@@ -5,4 +7,5 @@ export class AccreditationDTO{
     objective: String;
     dueDate: Date;
     qualification: number;
+    partialnote: PartialNote;
 }
