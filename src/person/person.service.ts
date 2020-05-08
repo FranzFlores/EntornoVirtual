@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcrypt';
 
-import { Injectable, HttpException, HttpStatus,Res } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus, Res } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -90,7 +90,7 @@ export class PersonService {
         return personUpdate;
     }
 
-    async uploadPerson(id:number,data: UpdatePersonDTO){
+    async updatePerson(id: number, data: UpdatePersonDTO) {
         let personUpdate = await this.personRepository.findOne(id);
         personUpdate.firstName1 = data.firstName1;
         personUpdate.firstName2 = data.firstName2;
@@ -100,30 +100,56 @@ export class PersonService {
         personUpdate.address = data.address;
         personUpdate.cellphone = data.cellphone;
         personUpdate.maritalStatus = data.maritalStatus;
-    
-        let person = await this.personRepository.update(id,personUpdate);
 
-        let personInfo = await this.personRepository.findOne({where:{id},relations:["student","administrative"]});
+        let person = await this.personRepository.update(id, personUpdate);
+
+        let personInfo = await this.personRepository.findOne({ where: { id }, relations: ["student", "administrative"] });
         if (data.type == "Estudiante") {
-            let student = await this.studentRepository.findOne({where:{id:personInfo.student.id}});
+            let student = await this.studentRepository.findOne({ where: { id: personInfo.student.id } });
             student.cycle = data.cycle;
-            await this.studentRepository.update(student.id,student);
-            return student;    
-        }else{
-            let administrative = await this.administrativeRepository.findOne({where:{id:personInfo.administrative.id}});
+            await this.studentRepository.update(student.id, student);
+            return student;
+        } else {
+            let administrative = await this.administrativeRepository.findOne({ where: { id: personInfo.administrative.id } });
             administrative.degree = data.degree;
             administrative.degreeFourthLevel = data.degreeFourthLevel;
-            await this.administrativeRepository.update(administrative.id,administrative);
+            await this.administrativeRepository.update(administrative.id, administrative);
             return administrative;
         }
     }
 
-    async deleteRestorePerson(id:number,data:any){
-        let person = await this.personRepository.update(id,data);
+    async deleteRestorePerson(id: number, data: any) {
+        let person = await this.personRepository.update(id, data);
         return person;
     }
-    
 
+    //Subir archivos de estudiate
+    async uploadFilesStudent(id: number, data: any) {
+        const person = await this.personRepository.findOne({ where: { id }, relations: ["student"] });
+        if (!person) {
+            throw new HttpException('La persona no existe', HttpStatus.BAD_REQUEST);
+        }
+
+        const student = await this.studentRepository.findOne(person.student.id);
+        student.degreeFile = data.degreeFile[0].filename;
+        student.degreeCertificateFile = data.degreeCertificateFile[0].filename;
+        let studentUpdate = await this.studentRepository.update(student.id, student);
+        return studentUpdate;
+    }
+
+    //Subir archivos de estudiate
+    async uploadFilesAdministrative(id: number, data: any) {
+        const person = await this.personRepository.findOne({ where: { id }, relations: ["administrative"] });
+        if (!person) {
+            throw new HttpException('La persona no existe', HttpStatus.BAD_REQUEST);
+        }
+
+        const administrative = await this.administrativeRepository.findOne(person.administrative.id);
+        administrative.degreeFile = data.degreeFile[0].filename;
+        administrative.degreeFourthLevelFile = data.degreeFourthLevelFile[0].filename;
+        let administrativeUpdate = await this.administrativeRepository.update(administrative.id, administrative);
+        return administrativeUpdate;
+    }
 
 
 }
