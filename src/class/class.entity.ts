@@ -14,7 +14,7 @@ export class Class{
     objective: String;
     
     @Column()
-    date: String;
+    date: String;//TODO: cambiar el tipo de dato para la fecha
 
     @ManyToOne(type => DescriptionPartial, descriptionpartial => descriptionpartial.classes)
     descriptionpartial: DescriptionPartial;
