@@ -118,6 +118,10 @@ export class PersonService {
         }
     }
 
+    async deleteRestorePerson(id:number,data:any){
+        let person = await this.personRepository.update(id,data);
+        return person;
+    }
     
 
 
