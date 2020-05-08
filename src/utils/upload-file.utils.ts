@@ -8,8 +8,6 @@ export const imageFileFilter = (req, file, callback) => {
     callback(null, true);
   };
 
-
-
 export const storage = multer.diskStorage({
     destination: './uploads/person',
     filename: function (req, file, cb) {   

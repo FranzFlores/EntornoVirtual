@@ -1,9 +1,10 @@
-import { Controller, Post, Body, UseInterceptors, UploadedFile, Param, Res, Get } from '@nestjs/common';
+import { Controller, Post, Body, UseInterceptors, UploadedFile, Param, Res, Get, Put } from '@nestjs/common';
 import { PersonService } from './person.service';
 import { CreatePersonDTO } from './dto/create-person.dto';
 
 import { FileInterceptor } from '@nestjs/platform-express';
 import { storage, imageFileFilter } from "../utils/upload-file.utils";
+import { UpdatePersonDTO } from './dto/update-person.dto';
 
 @Controller('person')
 export class PersonController {
@@ -31,6 +32,12 @@ export class PersonController {
     getImageUser(@Param('imagePath') img, @Res() res) {
         res.sendFile(img, { root: './uploads/person' })
     }
+
+    @Put('/update/:id')
+    updatePerson(@Param('id') id, @Body() person:UpdatePersonDTO){
+        return this.personService.uploadPerson(id,person);
+    }    
+    
 
 
 }

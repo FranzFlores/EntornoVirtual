@@ -9,8 +9,8 @@ import { Account } from 'src/account/schema/account.entity';
 import { Student } from 'src/student/schema/student.entity';
 import { Administrative } from 'src/administrative/schema/administrative.entity';
 
-import { ParsedPath } from "path";
 import { CreatePersonDTO } from './dto/create-person.dto';
+import { UpdatePersonDTO } from './dto/update-person.dto';
 
 @Injectable()
 export class PersonService {
@@ -81,24 +81,45 @@ export class PersonService {
     }
 
     async uploadImage(id: number, data: any) {
-
         const person = await this.personRepository.findOne({ where: { id } });
         if (!person) {
             throw new HttpException('La persona no existe', HttpStatus.BAD_REQUEST);
         }
-
-        var fileName = data.originalname.split('.');
-        var extension = fileName[fileName.length - 1];
-        person.image = data.filename + '.' + extension;
-
+        person.image = data.filename;
         let personUpdate = await this.personRepository.update(id, person);
         return personUpdate;
     }
 
-    async getImage(fileName: string,@Res() res) {
-        const path_file = './uploads/person/' + fileName;
-        
+    async uploadPerson(id:number,data: UpdatePersonDTO){
+        let personUpdate = await this.personRepository.findOne(id);
+        personUpdate.firstName1 = data.firstName1;
+        personUpdate.firstName2 = data.firstName2;
+        personUpdate.lastName1 = data.lastName1;
+        personUpdate.lastName2 = data.lastName2;
+        personUpdate.personalEmail = data.personalEmail;
+        personUpdate.address = data.address;
+        personUpdate.cellphone = data.cellphone;
+        personUpdate.maritalStatus = data.maritalStatus;
+    
+        let person = await this.personRepository.update(id,personUpdate);
+
+        let personInfo = await this.personRepository.findOne({where:{id},relations:["student","administrative"]});
+        if (data.type == "Estudiante") {
+            let student = await this.studentRepository.findOne({where:{id:personInfo.student.id}});
+            student.cycle = data.cycle;
+            await this.studentRepository.update(student.id,student);
+            return student;    
+        }else{
+            let administrative = await this.administrativeRepository.findOne({where:{id:personInfo.administrative.id}});
+            administrative.degree = data.degree;
+            administrative.degreeFourthLevel = data.degreeFourthLevel;
+            await this.administrativeRepository.update(administrative.id,administrative);
+            return administrative;
+        }
     }
+
+    
+
 
 
 }
